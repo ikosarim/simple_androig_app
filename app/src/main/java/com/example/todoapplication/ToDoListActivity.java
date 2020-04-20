@@ -27,7 +27,8 @@ public class ToDoListActivity extends Activity implements OnNewItemListener {
         todoItems = new ArrayList<>();
 
 //        Создать ArrayAdapter, чтобы привязать массив к ListView
-        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, todoItems);
+        int resId = R.layout.todolist_item;
+        aa = new ArrayAdapter<>(this, resId, todoItems);
 
 //         Привязать Адаптер массива к ListView
         toDoListFragment.setListAdapter(aa);
