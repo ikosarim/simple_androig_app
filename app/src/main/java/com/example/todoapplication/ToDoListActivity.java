@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ToDoListActivity extends Activity implements OnNewItemListener {
 
-    private ArrayAdapter<String> aa;
-    private ArrayList<String> todoItems;
+    private ToDoItemAdaptor aa;
+    private ArrayList<ToDoItem> todoItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class ToDoListActivity extends Activity implements OnNewItemListener {
 
 //        Создать ArrayAdapter, чтобы привязать массив к ListView
         int resId = R.layout.todolist_item;
-        aa = new ArrayAdapter<>(this, resId, todoItems);
+        aa = new ToDoItemAdaptor(this, resId, todoItems);
 
 //         Привязать Адаптер массива к ListView
         toDoListFragment.setListAdapter(aa);
@@ -36,7 +36,8 @@ public class ToDoListActivity extends Activity implements OnNewItemListener {
 
     @Override
     public void onNewItemAdded(String newItem) {
-        todoItems.add(newItem);
+        ToDoItem newToDoItem = new ToDoItem(newItem);
+        todoItems.add(0, newToDoItem);
         aa.notifyDataSetChanged();
     }
 }
